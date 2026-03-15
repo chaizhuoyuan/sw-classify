@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>申万行业分类 SW2021 · 三级结构</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--dim:#8b949e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;padding:16px;max-width:1400px;margin:0 auto;line-height:1.5}
+h1{color:#fff;font-size:1.6em;margin-bottom:4px}
+.subtitle{color:var(--dim);font-size:.85em;margin-bottom:20px}
+.stats{display:flex;gap:20px;margin-bottom:20px;flex-wrap:wrap}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 20px;text-align:center}
+.stat-num{font-size:1.8em;font-weight:700;color:#58a6ff}
+.stat-label{font-size:.8em;color:var(--dim)}
+.l1-block{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden}
+.l1-header{padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:1.05em;font-weight:600;border-bottom:1px solid var(--border)}
+.l1-header:hover{background:rgba(88,166,255,.05)}
+.l1-header .arrow{transition:transform .2s;color:var(--dim)}
+.l1-block.open .l1-header .arrow{transform:rotate(90deg)}
+.l1-body{display:none;padding:12px 18px}
+.l1-block.open .l1-body{display:block}
+.l2-section{margin-bottom:12px}
+.l2-title{font-size:.95em;font-weight:600;margin-bottom:6px;padding:6px 0;border-bottom:1px solid var(--border)}
+.l3-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.l3-tag{padding:4px 10px;border-radius:6px;font-size:.8em;border:1px solid var(--border);cursor:default}
+.l3-tag:hover{filter:brightness(1.3)}
+.l3-count{color:var(--dim);font-size:.75em;margin-left:4px}
+.search{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.9em;margin-bottom:16px;outline:none}
+.search:focus{border-color:#58a6ff}
+.footer{text-align:center;color:var(--dim);font-size:.75em;margin-top:24px;padding:16px;border-top:1px solid var(--border)}
+@media(max-width:600px){h1{font-size:1.3em}.stats{gap:10px}.stat{padding:8px 12px}}
+</style>
+</head>
+<body>
+<h1>📊 申万行业分类 (SW2021)</h1>
+<div class="subtitle">数据来源: Tushare Pro · 一二三级完整结构</div>
+<div class="stats">
+  <div class="stat"><div class="stat-num">31</div><div class="stat-label">一级行业</div></div>
+  <div class="stat"><div class="stat-num">134</div><div class="stat-label">二级行业</div></div>
+  <div class="stat"><div class="stat-num">346</div><div class="stat-label">三级行业</div></div>
+</div>
+<input type="text" class="search" placeholder="🔍 搜索行业名称..." oninput="filterIndustries(this.value)">
+<div class="l1-block" data-name="农林牧渔" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #58a6ff">
+    <span>农林牧渔 <span class="l3-count">801010.SI · 8个二级 · 18个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="种植业">
+      <div class="l2-title" style="color:#58a6ff">种植业 <span class="l3-count">801016.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="种子" title="850111.SI / 110101">种子</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="粮食种植" title="850112.SI / 110102">粮食种植</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="其他种植业" title="850113.SI / 110103">其他种植业</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="食用菌" title="850114.SI / 110104">食用菌</span></div></div><div class="l2-section" data-name="渔业">
+      <div class="l2-title" style="color:#58a6ff">渔业 <span class="l3-count">801015.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="海洋捕捞" title="850121.SI / 110201">海洋捕捞</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="水产养殖" title="850122.SI / 110202">水产养殖</span></div></div><div class="l2-section" data-name="林业Ⅱ">
+      <div class="l2-title" style="color:#58a6ff">林业Ⅱ <span class="l3-count">801011.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="林业Ⅲ" title="850131.SI / 110301">林业Ⅲ</span></div></div><div class="l2-section" data-name="饲料">
+      <div class="l2-title" style="color:#58a6ff">饲料 <span class="l3-count">801014.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="畜禽饲料" title="850142.SI / 110402">畜禽饲料</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="水产饲料" title="850143.SI / 110403">水产饲料</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="宠物食品" title="850144.SI / 110404">宠物食品</span></div></div><div class="l2-section" data-name="农产品加工">
+      <div class="l2-title" style="color:#58a6ff">农产品加工 <span class="l3-count">801012.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="果蔬加工" title="850151.SI / 110501">果蔬加工</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="粮油加工" title="850152.SI / 110502">粮油加工</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="其他农产品加工" title="850154.SI / 110504">其他农产品加工</span></div></div><div class="l2-section" data-name="养殖业">
+      <div class="l2-title" style="color:#58a6ff">养殖业 <span class="l3-count">801017.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="生猪养殖" title="850172.SI / 110702">生猪养殖</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="肉鸡养殖" title="850173.SI / 110703">肉鸡养殖</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="其他养殖" title="850174.SI / 110704">其他养殖</span></div></div><div class="l2-section" data-name="动物保健Ⅱ">
+      <div class="l2-title" style="color:#58a6ff">动物保健Ⅱ <span class="l3-count">801018.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="动物保健Ⅲ" title="850181.SI / 110801">动物保健Ⅲ</span></div></div><div class="l2-section" data-name="农业综合Ⅱ">
+      <div class="l2-title" style="color:#58a6ff">农业综合Ⅱ <span class="l3-count">801019.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="农业综合Ⅲ" title="850191.SI / 110901">农业综合Ⅲ</span></div></div></div></div><div class="l1-block" data-name="基础化工" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #f85149">
+    <span>基础化工 <span class="l3-count">801030.SI · 7个二级 · 33个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="化学原料">
+      <div class="l2-title" style="color:#f85149">化学原料 <span class="l3-count">801033.SI · 6个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="纯碱" title="850321.SI / 220201">纯碱</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="氯碱" title="850322.SI / 220202">氯碱</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="无机盐" title="850323.SI / 220203">无机盐</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="其他化学原料" title="850324.SI / 220204">其他化学原料</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="煤化工" title="850325.SI / 220205">煤化工</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="钛白粉" title="850326.SI / 220206">钛白粉</span></div></div><div class="l2-section" data-name="化学制品">
+      <div class="l2-title" style="color:#f85149">化学制品 <span class="l3-count">801034.SI · 9个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="涂料油墨" title="850335.SI / 220305">涂料油墨</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="民爆制品" title="850337.SI / 220307">民爆制品</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="纺织化学制品" title="850338.SI / 220308">纺织化学制品</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="其他化学制品" title="850339.SI / 220309">其他化学制品</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="氟化工" title="850382.SI / 220311">氟化工</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="聚氨酯" title="850372.SI / 220313">聚氨酯</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="食品及饲料添加剂" title="850135.SI / 220315">食品及饲料添加剂</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="有机硅" title="850136.SI / 220316">有机硅</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="胶黏剂及胶带" title="850137.SI / 220317">胶黏剂及胶带</span></div></div><div class="l2-section" data-name="化学纤维">
+      <div class="l2-title" style="color:#f85149">化学纤维 <span class="l3-count">801032.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="涤纶" title="850341.SI / 220401">涤纶</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="粘胶" title="850343.SI / 220403">粘胶</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="其他化学纤维" title="850344.SI / 220404">其他化学纤维</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="氨纶" title="850345.SI / 220405">氨纶</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="锦纶" title="850346.SI / 220406">锦纶</span></div></div><div class="l2-section" data-name="塑料">
+      <div class="l2-title" style="color:#f85149">塑料 <span class="l3-count">801036.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="其他塑料制品" title="850351.SI / 220501">其他塑料制品</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="改性塑料" title="850353.SI / 220503">改性塑料</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="合成树脂" title="850354.SI / 220504">合成树脂</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="膜材料" title="850355.SI / 220505">膜材料</span></div></div><div class="l2-section" data-name="橡胶">
+      <div class="l2-title" style="color:#f85149">橡胶 <span class="l3-count">801037.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="其他橡胶制品" title="850362.SI / 220602">其他橡胶制品</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="炭黑" title="850363.SI / 220603">炭黑</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="橡胶助剂" title="850364.SI / 220604">橡胶助剂</span></div></div><div class="l2-section" data-name="农化制品">
+      <div class="l2-title" style="color:#f85149">农化制品 <span class="l3-count">801038.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="氮肥" title="850331.SI / 220801">氮肥</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="磷肥及磷化工" title="850332.SI / 220802">磷肥及磷化工</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="农药" title="850333.SI / 220803">农药</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="钾肥" title="850336.SI / 220804">钾肥</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="复合肥" title="850381.SI / 220805">复合肥</span></div></div><div class="l2-section" data-name="非金属材料Ⅱ">
+      <div class="l2-title" style="color:#f85149">非金属材料Ⅱ <span class="l3-count">801039.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="非金属材料Ⅲ" title="850523.SI / 220901">非金属材料Ⅲ</span></div></div></div></div><div class="l1-block" data-name="钢铁" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #3fb950">
+    <span>钢铁 <span class="l3-count">801040.SI · 3个二级 · 6个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="冶钢原料">
+      <div class="l2-title" style="color:#3fb950">冶钢原料 <span class="l3-count">801043.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="铁矿石" title="850431.SI / 230301">铁矿石</span><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="冶钢辅料" title="850432.SI / 230302">冶钢辅料</span></div></div><div class="l2-section" data-name="普钢">
+      <div class="l2-title" style="color:#3fb950">普钢 <span class="l3-count">801044.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="长材" title="850441.SI / 230401">长材</span><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="板材" title="850442.SI / 230402">板材</span><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="钢铁管材" title="850443.SI / 230403">钢铁管材</span></div></div><div class="l2-section" data-name="特钢Ⅱ">
+      <div class="l2-title" style="color:#3fb950">特钢Ⅱ <span class="l3-count">801045.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="特钢Ⅲ" title="850401.SI / 230501">特钢Ⅲ</span></div></div></div></div><div class="l1-block" data-name="有色金属" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #d29922">
+    <span>有色金属 <span class="l3-count">801050.SI · 5个二级 · 14个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="金属新材料">
+      <div class="l2-title" style="color:#d29922">金属新材料 <span class="l3-count">801051.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="其他金属新材料" title="850521.SI / 240201">其他金属新材料</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="磁性材料" title="850522.SI / 240202">磁性材料</span></div></div><div class="l2-section" data-name="工业金属">
+      <div class="l2-title" style="color:#d29922">工业金属 <span class="l3-count">801055.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="铝" title="850551.SI / 240301">铝</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="铜" title="850552.SI / 240302">铜</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="铅锌" title="850553.SI / 240303">铅锌</span></div></div><div class="l2-section" data-name="贵金属">
+      <div class="l2-title" style="color:#d29922">贵金属 <span class="l3-count">801053.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="黄金" title="850531.SI / 240401">黄金</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="白银" title="850532.SI / 240402">白银</span></div></div><div class="l2-section" data-name="小金属">
+      <div class="l2-title" style="color:#d29922">小金属 <span class="l3-count">801054.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="稀土" title="850541.SI / 240501">稀土</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="钨" title="850542.SI / 240502">钨</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="其他小金属" title="850544.SI / 240504">其他小金属</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="钼" title="850545.SI / 240505">钼</span></div></div><div class="l2-section" data-name="能源金属">
+      <div class="l2-title" style="color:#d29922">能源金属 <span class="l3-count">801056.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="钴" title="850561.SI / 240601">钴</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="镍" title="850562.SI / 240602">镍</span><span class="l3-tag" style="background:rgba(210,153,34,.12);color:#d29922" data-name="锂" title="850543.SI / 240603">锂</span></div></div></div></div><div class="l1-block" data-name="电子" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #bc8cff">
+    <span>电子 <span class="l3-count">801080.SI · 6个二级 · 16个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="半导体">
+      <div class="l2-title" style="color:#bc8cff">半导体 <span class="l3-count">801081.SI · 7个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="分立器件" title="850812.SI / 270102">分立器件</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="半导体材料" title="850813.SI / 270103">半导体材料</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="数字芯片设计" title="850814.SI / 270104">数字芯片设计</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="模拟芯片设计" title="850815.SI / 270105">模拟芯片设计</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="集成电路制造" title="850816.SI / 270106">集成电路制造</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="集成电路封测" title="850817.SI / 270107">集成电路封测</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="半导体设备" title="850818.SI / 270108">半导体设备</span></div></div><div class="l2-section" data-name="元件">
+      <div class="l2-title" style="color:#bc8cff">元件 <span class="l3-count">801083.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="印制电路板" title="850822.SI / 270202">印制电路板</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="被动元件" title="850823.SI / 270203">被动元件</span></div></div><div class="l2-section" data-name="光学光电子">
+      <div class="l2-title" style="color:#bc8cff">光学光电子 <span class="l3-count">801084.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="面板" title="850831.SI / 270301">面板</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="LED" title="850832.SI / 270302">LED</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="光学元件" title="850833.SI / 270303">光学元件</span></div></div><div class="l2-section" data-name="其他电子Ⅱ">
+      <div class="l2-title" style="color:#bc8cff">其他电子Ⅱ <span class="l3-count">801082.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="其他电子Ⅲ" title="850841.SI / 270401">其他电子Ⅲ</span></div></div><div class="l2-section" data-name="消费电子">
+      <div class="l2-title" style="color:#bc8cff">消费电子 <span class="l3-count">801085.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="品牌消费电子" title="850853.SI / 270503">品牌消费电子</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="消费电子零部件及组装" title="850854.SI / 270504">消费电子零部件及组装</span></div></div><div class="l2-section" data-name="电子化学品Ⅱ">
+      <div class="l2-title" style="color:#bc8cff">电子化学品Ⅱ <span class="l3-count">801086.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="电子化学品Ⅲ" title="850861.SI / 270601">电子化学品Ⅲ</span></div></div></div></div><div class="l1-block" data-name="汽车" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #f778ba">
+    <span>汽车 <span class="l3-count">801880.SI · 5个二级 · 13个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="汽车零部件">
+      <div class="l2-title" style="color:#f778ba">汽车零部件 <span class="l3-count">801093.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="车身附件及饰件" title="850922.SI / 280202">车身附件及饰件</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="底盘与发动机系统" title="850923.SI / 280203">底盘与发动机系统</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="轮胎轮毂" title="850924.SI / 280204">轮胎轮毂</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="其他汽车零部件" title="850925.SI / 280205">其他汽车零部件</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="汽车电子电气系统" title="850926.SI / 280206">汽车电子电气系统</span></div></div><div class="l2-section" data-name="汽车服务">
+      <div class="l2-title" style="color:#f778ba">汽车服务 <span class="l3-count">801092.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="汽车经销商" title="850232.SI / 280302">汽车经销商</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="汽车综合服务" title="850233.SI / 280303">汽车综合服务</span></div></div><div class="l2-section" data-name="摩托车及其他">
+      <div class="l2-title" style="color:#f778ba">摩托车及其他 <span class="l3-count">801881.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="其他运输设备" title="858811.SI / 280401">其他运输设备</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="摩托车" title="858812.SI / 280402">摩托车</span></div></div><div class="l2-section" data-name="乘用车">
+      <div class="l2-title" style="color:#f778ba">乘用车 <span class="l3-count">801095.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="电动乘用车" title="850951.SI / 280501">电动乘用车</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="综合乘用车" title="850952.SI / 280502">综合乘用车</span></div></div><div class="l2-section" data-name="商用车">
+      <div class="l2-title" style="color:#f778ba">商用车 <span class="l3-count">801096.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="商用载货车" title="850912.SI / 280601">商用载货车</span><span class="l3-tag" style="background:rgba(247,120,186,.12);color:#f778ba" data-name="商用载��车" title="850913.SI / 280602">商用载��车</span></div></div></div></div><div class="l1-block" data-name="家用电器" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #79c0ff">
+    <span>家用电器 <span class="l3-count">801110.SI · 7个二级 · 12个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="白色家电">
+      <div class="l2-title" style="color:#79c0ff">白色家电 <span class="l3-count">801111.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="空调" title="851112.SI / 330102">空调</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="冰洗" title="851116.SI / 330106">冰洗</span></div></div><div class="l2-section" data-name="黑色家电">
+      <div class="l2-title" style="color:#79c0ff">黑色家电 <span class="l3-count">801112.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="彩电" title="851121.SI / 330201">彩电</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="其他黑色家电" title="851122.SI / 330202">其他黑色家电</span></div></div><div class="l2-section" data-name="小家电">
+      <div class="l2-title" style="color:#79c0ff">小家电 <span class="l3-count">801113.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="厨房小家电" title="851131.SI / 330301">厨房小家电</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="清洁小家电" title="851132.SI / 330302">清洁小家电</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="个护小家电" title="851133.SI / 330303">个护小家电</span></div></div><div class="l2-section" data-name="厨卫电器">
+      <div class="l2-title" style="color:#79c0ff">厨卫电器 <span class="l3-count">801114.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="厨房电器" title="851141.SI / 330401">厨房电器</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="卫浴电器" title="851142.SI / 330402">卫浴电器</span></div></div><div class="l2-section" data-name="照明设备Ⅱ">
+      <div class="l2-title" style="color:#79c0ff">照明设备Ⅱ <span class="l3-count">801115.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="照明设备Ⅲ" title="851151.SI / 330501">照明设备Ⅲ</span></div></div><div class="l2-section" data-name="家电零部件Ⅱ">
+      <div class="l2-title" style="color:#79c0ff">家电零部件Ⅱ <span class="l3-count">801116.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="家电零部件Ⅲ" title="851161.SI / 330601">家电零部件Ⅲ</span></div></div><div class="l2-section" data-name="其他家电Ⅱ">
+      <div class="l2-title" style="color:#79c0ff">其他家电Ⅱ <span class="l3-count">801117.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="其他家电Ⅲ" title="851171.SI / 330701">其他家电Ⅲ</span></div></div></div></div><div class="l1-block" data-name="食品饮料" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #7ee787">
+    <span>食品饮料 <span class="l3-count">801120.SI · 6个二级 · 13个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="食品加工">
+      <div class="l2-title" style="color:#7ee787">食品加工 <span class="l3-count">801124.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="肉制品" title="851241.SI / 340401">肉制品</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="其他食品" title="851244.SI / 340404">其他食品</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="预加工食品" title="851246.SI / 340406">预加工食品</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="保健品" title="851247.SI / 340407">保健品</span></div></div><div class="l2-section" data-name="白酒Ⅱ">
+      <div class="l2-title" style="color:#7ee787">白酒Ⅱ <span class="l3-count">801125.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="白酒Ⅲ" title="851251.SI / 340501">白酒Ⅲ</span></div></div><div class="l2-section" data-name="非白酒">
+      <div class="l2-title" style="color:#7ee787">非白酒 <span class="l3-count">801126.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="啤酒" title="851232.SI / 340601">啤酒</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="其他酒类" title="851233.SI / 340602">其他酒类</span></div></div><div class="l2-section" data-name="饮料乳品">
+      <div class="l2-title" style="color:#7ee787">饮料乳品 <span class="l3-count">801127.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="软饮料" title="851271.SI / 340701">软饮料</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="乳品" title="851243.SI / 340702">乳品</span></div></div><div class="l2-section" data-name="休闲食品">
+      <div class="l2-title" style="color:#7ee787">休闲食品 <span class="l3-count">801128.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="零食" title="851281.SI / 340801">零食</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="烘焙食品" title="851282.SI / 340802">烘焙食品</span><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="熟食" title="851283.SI / 340803">熟食</span></div></div><div class="l2-section" data-name="调味发酵品Ⅱ">
+      <div class="l2-title" style="color:#7ee787">调味发酵品Ⅱ <span class="l3-count">801129.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="调味发酵品Ⅲ" title="851242.SI / 340901">调味发酵品Ⅲ</span></div></div></div></div><div class="l1-block" data-name="纺织服饰" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ffa657">
+    <span>纺织服饰 <span class="l3-count">801130.SI · 3个二级 · 12个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="纺织制造">
+      <div class="l2-title" style="color:#ffa657">纺织制造 <span class="l3-count">801131.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="棉纺" title="851312.SI / 350102">棉纺</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="印染" title="851314.SI / 350104">印染</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="辅料" title="851315.SI / 350105">辅料</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="其他纺织" title="851316.SI / 350106">其他纺织</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="纺织鞋类制造" title="851317.SI / 350107">纺织鞋类制造</span></div></div><div class="l2-section" data-name="服装家纺">
+      <div class="l2-title" style="color:#ffa657">服装家纺 <span class="l3-count">801132.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="鞋帽及其他" title="851325.SI / 350205">鞋帽及其他</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="家纺" title="851326.SI / 350206">家纺</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="运动服装" title="851328.SI / 350208">运动服装</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="非运动服装" title="851329.SI / 350209">非运动服装</span></div></div><div class="l2-section" data-name="饰品">
+      <div class="l2-title" style="color:#ffa657">饰品 <span class="l3-count">801133.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="钟表珠宝" title="851331.SI / 350301">钟表珠宝</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="多品类奢侈品" title="851332.SI / 350302">多品类奢侈品</span><span class="l3-tag" style="background:rgba(255,166,87,.12);color:#ffa657" data-name="其他饰品" title="851333.SI / 350303">其他饰品</span></div></div></div></div><div class="l1-block" data-name="轻工制造" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ff7b72">
+    <span>轻工制造 <span class="l3-count">801140.SI · 4个二级 · 14个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="造纸">
+      <div class="l2-title" style="color:#ff7b72">造纸 <span class="l3-count">801143.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="大宗用纸" title="851412.SI / 360102">大宗用纸</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="特种纸" title="851413.SI / 360103">特种纸</span></div></div><div class="l2-section" data-name="包装印刷">
+      <div class="l2-title" style="color:#ff7b72">包装印刷 <span class="l3-count">801141.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="印刷" title="851422.SI / 360202">印刷</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="金属包装" title="851423.SI / 360203">金属包装</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="塑料包装" title="851424.SI / 360204">塑料包装</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="纸包装" title="851425.SI / 360205">纸包装</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="综合包装" title="851426.SI / 360206">综合包装</span></div></div><div class="l2-section" data-name="家居用品">
+      <div class="l2-title" style="color:#ff7b72">家居用品 <span class="l3-count">801142.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="瓷砖地板" title="851436.SI / 360306">瓷砖地板</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="成品家居" title="851437.SI / 360307">成品家居</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="定制家居" title="851438.SI / 360308">定制家居</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="卫浴制品" title="851439.SI / 360309">卫浴制品</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="其他家居用品" title="851491.SI / 360311">其他家居用品</span></div></div><div class="l2-section" data-name="文娱用品">
+      <div class="l2-title" style="color:#ff7b72">文娱用品 <span class="l3-count">801145.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="文化用品" title="851451.SI / 360501">文化用品</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="娱乐用品" title="851452.SI / 360502">娱乐用品</span></div></div></div></div><div class="l1-block" data-name="医药生物" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #d2a8ff">
+    <span>医药生物 <span class="l3-count">801150.SI · 6个二级 · 16个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="化学制药">
+      <div class="l2-title" style="color:#d2a8ff">化学制药 <span class="l3-count">801151.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="原料药" title="851511.SI / 370101">原料药</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="化学制剂" title="851512.SI / 370102">化学制剂</span></div></div><div class="l2-section" data-name="中药Ⅱ">
+      <div class="l2-title" style="color:#d2a8ff">中药Ⅱ <span class="l3-count">801155.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="中药Ⅲ" title="851521.SI / 370201">中药Ⅲ</span></div></div><div class="l2-section" data-name="生物制品">
+      <div class="l2-title" style="color:#d2a8ff">生物制品 <span class="l3-count">801152.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="血液制品" title="851522.SI / 370302">血液制品</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="疫苗" title="851523.SI / 370303">疫苗</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="其他生物制品" title="851524.SI / 370304">其他生物制品</span></div></div><div class="l2-section" data-name="医药商业">
+      <div class="l2-title" style="color:#d2a8ff">医药商业 <span class="l3-count">801154.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="医药流通" title="851542.SI / 370402">医药流通</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="线下药店" title="851543.SI / 370403">线下药店</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="互联网药店" title="851544.SI / 370404">互联网药店</span></div></div><div class="l2-section" data-name="医疗器械">
+      <div class="l2-title" style="color:#d2a8ff">医疗器械 <span class="l3-count">801153.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="医疗设备" title="851532.SI / 370502">医疗设备</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="医疗耗材" title="851533.SI / 370503">医疗耗材</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="体外诊断" title="851534.SI / 370504">体外诊断</span></div></div><div class="l2-section" data-name="医疗服务">
+      <div class="l2-title" style="color:#d2a8ff">医疗服务 <span class="l3-count">801156.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="诊断服务" title="851562.SI / 370602">诊断服务</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="医疗研发外包" title="851563.SI / 370603">医疗研发外包</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="医院" title="851564.SI / 370604">医院</span><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="其他医疗服务" title="851565.SI / 370605">其他医疗服务</span></div></div></div></div><div class="l1-block" data-name="公用事业" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #a5d6ff">
+    <span>公用事业 <span class="l3-count">801160.SI · 2个二级 · 9个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="电力">
+      <div class="l2-title" style="color:#a5d6ff">电力 <span class="l3-count">801161.SI · 8个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="火力发电" title="851611.SI / 410101">火力发电</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="水力发电" title="851612.SI / 410102">水力发电</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="热力服务" title="851614.SI / 410104">热力服务</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="光伏发电" title="851616.SI / 410106">光伏发电</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="风力发电" title="851617.SI / 410107">风力发电</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="核力发电" title="851618.SI / 410108">核力发电</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="其他能源发电" title="851619.SI / 410109">其他能源发电</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="电能综合服务" title="851610.SI / 410110">电能综合服务</span></div></div><div class="l2-section" data-name="燃气Ⅱ">
+      <div class="l2-title" style="color:#a5d6ff">燃气Ⅱ <span class="l3-count">801163.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="燃气Ⅲ" title="851631.SI / 410301">燃气Ⅲ</span></div></div></div></div><div class="l1-block" data-name="交通运输" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ffd33d">
+    <span>交通运输 <span class="l3-count">801170.SI · 4个二级 · 13个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="物流">
+      <div class="l2-title" style="color:#ffd33d">物流 <span class="l3-count">801178.SI · 6个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="原材料供应链服务" title="851782.SI / 420802">原材料供应链服务</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="中间产品及消费品供应链服务" title="851783.SI / 420803">中间产品及消费品供应链服务</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="快递" title="851784.SI / 420804">快递</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="跨境物流" title="851785.SI / 420805">跨境物流</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="仓储物流" title="851786.SI / 420806">仓储物流</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="公路货运" title="851787.SI / 420807">公路货运</span></div></div><div class="l2-section" data-name="铁路公路">
+      <div class="l2-title" style="color:#ffd33d">铁路公路 <span class="l3-count">801179.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="高速公路" title="851731.SI / 420901">高速公路</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="公交" title="851721.SI / 420902">公交</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="铁路运输" title="851771.SI / 420903">铁路运输</span></div></div><div class="l2-section" data-name="航空机场">
+      <div class="l2-title" style="color:#ffd33d">航空机场 <span class="l3-count">801991.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="航空运输" title="851741.SI / 421001">航空运输</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="机场" title="851751.SI / 421002">机场</span></div></div><div class="l2-section" data-name="航运港口">
+      <div class="l2-title" style="color:#ffd33d">航运港口 <span class="l3-count">801992.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="航运" title="851761.SI / 421101">航运</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="港口" title="851711.SI / 421102">港口</span></div></div></div></div><div class="l1-block" data-name="房地产" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #56d4dd">
+    <span>房地产 <span class="l3-count">801180.SI · 2个二级 · 6个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="房地产开发">
+      <div class="l2-title" style="color:#56d4dd">房地产开发 <span class="l3-count">801181.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="住宅开发" title="851811.SI / 430101">住宅开发</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="商业地产" title="851812.SI / 430102">商业地产</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="产业地产" title="851813.SI / 430103">产业地产</span></div></div><div class="l2-section" data-name="房地产服务">
+      <div class="l2-title" style="color:#56d4dd">房地产服务 <span class="l3-count">801183.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="物业管理" title="851831.SI / 430301">物业管理</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="房产租赁经纪" title="851832.SI / 430302">房产租赁经纪</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="房地产综合服务" title="851833.SI / 430303">房地产综合服务</span></div></div></div></div><div class="l1-block" data-name="商贸零售" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #e3b341">
+    <span>商贸零售 <span class="l3-count">801200.SI · 5个二级 · 10个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="贸易Ⅱ">
+      <div class="l2-title" style="color:#e3b341">贸易Ⅱ <span class="l3-count">801202.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="贸易Ⅲ" title="852021.SI / 450201">贸易Ⅲ</span></div></div><div class="l2-section" data-name="一般零售">
+      <div class="l2-title" style="color:#e3b341">一般零售 <span class="l3-count">801203.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="百货" title="852031.SI / 450301">百货</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="超市" title="852032.SI / 450302">超市</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="多业态零售" title="852033.SI / 450303">多业态零售</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="商业物业经营" title="852034.SI / 450304">商业物业经营</span></div></div><div class="l2-section" data-name="专业连锁Ⅱ">
+      <div class="l2-title" style="color:#e3b341">专业连锁Ⅱ <span class="l3-count">801204.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="专业连锁Ⅲ" title="852041.SI / 450401">专业连锁Ⅲ</span></div></div><div class="l2-section" data-name="互联网电商">
+      <div class="l2-title" style="color:#e3b341">互联网电商 <span class="l3-count">801206.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="综合电商" title="852061.SI / 450601">综合电商</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="跨境电商" title="852062.SI / 450602">跨境电商</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="电商服务" title="852063.SI / 450603">电商服务</span></div></div><div class="l2-section" data-name="旅游零售Ⅱ">
+      <div class="l2-title" style="color:#e3b341">旅游零售Ⅱ <span class="l3-count">801207.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="旅游零售Ⅲ" title="852071.SI / 450701">旅游零售Ⅲ</span></div></div></div></div><div class="l1-block" data-name="社会服务" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #8b949e">
+    <span>社会服务 <span class="l3-count">801210.SI · 6个二级 · 15个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="体育Ⅱ">
+      <div class="l2-title" style="color:#8b949e">体育Ⅱ <span class="l3-count">801216.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="体育Ⅲ" title="852161.SI / 460601">体育Ⅲ</span></div></div><div class="l2-section" data-name="本地生活服务Ⅱ">
+      <div class="l2-title" style="color:#8b949e">本地生活服务Ⅱ <span class="l3-count">801217.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="本地生活服务Ⅲ" title="852171.SI / 460701">本地生活服务Ⅲ</span></div></div><div class="l2-section" data-name="专业服务">
+      <div class="l2-title" style="color:#8b949e">专业服务 <span class="l3-count">801218.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="人力资源服务" title="852181.SI / 460801">人力资源服务</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="检测服务" title="852182.SI / 460802">检测服务</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="会展服务" title="852183.SI / 460803">会展服务</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="其他专业服务" title="852184.SI / 460804">其他专业服务</span></div></div><div class="l2-section" data-name="酒店餐饮">
+      <div class="l2-title" style="color:#8b949e">酒店餐饮 <span class="l3-count">801219.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="酒店" title="852121.SI / 460901">酒店</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="餐饮" title="852141.SI / 460902">餐饮</span></div></div><div class="l2-section" data-name="旅游及景区">
+      <div class="l2-title" style="color:#8b949e">旅游及景区 <span class="l3-count">801993.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="博彩" title="859931.SI / 461001">博彩</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="人工景区" title="852111.SI / 461002">人工景区</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="自然景区" title="852112.SI / 461003">自然景区</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="旅游综合" title="852131.SI / 461004">旅游综合</span></div></div><div class="l2-section" data-name="教育">
+      <div class="l2-title" style="color:#8b949e">教育 <span class="l3-count">801994.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="学历教育" title="859851.SI / 461101">学历教育</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="培训教育" title="859852.SI / 461102">培训教育</span><span class="l3-tag" style="background:rgba(139,148,158,.12);color:#8b949e" data-name="教育运营及其他" title="859853.SI / 461103">教育运营及其他</span></div></div></div></div><div class="l1-block" data-name="银行" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #c9d1d9">
+    <span>银行 <span class="l3-count">801780.SI · 5个二级 · 5个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="国有大型银行Ⅱ">
+      <div class="l2-title" style="color:#c9d1d9">国有大型银行Ⅱ <span class="l3-count">801782.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(201,209,217,.12);color:#c9d1d9" data-name="国有大型银行Ⅲ" title="857821.SI / 480201">国有大型银行Ⅲ</span></div></div><div class="l2-section" data-name="股份制银行Ⅱ">
+      <div class="l2-title" style="color:#c9d1d9">股份制银行Ⅱ <span class="l3-count">801783.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(201,209,217,.12);color:#c9d1d9" data-name="股份制银行Ⅲ" title="857831.SI / 480301">股份制银行Ⅲ</span></div></div><div class="l2-section" data-name="城商行Ⅱ">
+      <div class="l2-title" style="color:#c9d1d9">城商行Ⅱ <span class="l3-count">801784.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(201,209,217,.12);color:#c9d1d9" data-name="城商行Ⅲ" title="857841.SI / 480401">城商行Ⅲ</span></div></div><div class="l2-section" data-name="农商行Ⅱ">
+      <div class="l2-title" style="color:#c9d1d9">农商行Ⅱ <span class="l3-count">801785.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(201,209,217,.12);color:#c9d1d9" data-name="农商行Ⅲ" title="857851.SI / 480501">农商行Ⅲ</span></div></div><div class="l2-section" data-name="其他银行Ⅱ">
+      <div class="l2-title" style="color:#c9d1d9">其他银行Ⅱ <span class="l3-count">801786.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(201,209,217,.12);color:#c9d1d9" data-name="其他银行Ⅲ" title="857861.SI / 480601">其他银行Ⅲ</span></div></div></div></div><div class="l1-block" data-name="非银金融" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ff9bce">
+    <span>非银金融 <span class="l3-count">801790.SI · 3个二级 · 9个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="证券Ⅱ">
+      <div class="l2-title" style="color:#ff9bce">证券Ⅱ <span class="l3-count">801193.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="证券Ⅲ" title="851931.SI / 490101">证券Ⅲ</span></div></div><div class="l2-section" data-name="保险Ⅱ">
+      <div class="l2-title" style="color:#ff9bce">保险Ⅱ <span class="l3-count">801194.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="保险Ⅲ" title="851941.SI / 490201">保险Ⅲ</span></div></div><div class="l2-section" data-name="多元金融">
+      <div class="l2-title" style="color:#ff9bce">多元金融 <span class="l3-count">801191.SI · 7个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="金融控股" title="851922.SI / 490302">金融控股</span><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="期货" title="851923.SI / 490303">期货</span><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="信托" title="851924.SI / 490304">信托</span><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="租赁" title="851925.SI / 490305">租赁</span><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="金融信息服务" title="851926.SI / 490306">金融信息服务</span><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="资产管理" title="851927.SI / 490307">资产管理</span><span class="l3-tag" style="background:rgba(255,155,206,.12);color:#ff9bce" data-name="其他多元金融" title="851928.SI / 490308">其他多元金融</span></div></div></div></div><div class="l1-block" data-name="综合" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #7ee787">
+    <span>综合 <span class="l3-count">801230.SI · 1个二级 · 1个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="综合Ⅱ">
+      <div class="l2-title" style="color:#7ee787">综合Ⅱ <span class="l3-count">801231.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(126,231,135,.12);color:#7ee787" data-name="综合Ⅲ" title="852311.SI / 510101">综合Ⅲ</span></div></div></div></div><div class="l1-block" data-name="建筑材料" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #79c0ff">
+    <span>建筑材料 <span class="l3-count">801710.SI · 3个二级 · 9个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="水泥">
+      <div class="l2-title" style="color:#79c0ff">水泥 <span class="l3-count">801711.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="水泥制造" title="857111.SI / 610101">水泥制造</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="水泥制品" title="857112.SI / 610102">水泥制品</span></div></div><div class="l2-section" data-name="玻璃玻纤">
+      <div class="l2-title" style="color:#79c0ff">玻璃玻纤 <span class="l3-count">801712.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="玻璃制造" title="857121.SI / 610201">玻璃制造</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="玻纤制造" title="857122.SI / 610202">玻纤制造</span></div></div><div class="l2-section" data-name="装修建材">
+      <div class="l2-title" style="color:#79c0ff">装修建材 <span class="l3-count">801713.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="耐火材料" title="850615.SI / 610301">耐火材料</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="管材" title="850616.SI / 610302">管材</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="其他建材" title="850614.SI / 610303">其他建材</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="防水材料" title="850617.SI / 610304">防水材料</span><span class="l3-tag" style="background:rgba(121,192,255,.12);color:#79c0ff" data-name="涂料" title="850618.SI / 610305">涂料</span></div></div></div></div><div class="l1-block" data-name="建筑装饰" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ffa198">
+    <span>建筑装饰 <span class="l3-count">801720.SI · 5个二级 · 9个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="房屋建设Ⅱ">
+      <div class="l2-title" style="color:#ffa198">房屋建设Ⅱ <span class="l3-count">801721.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="房屋建设Ⅲ" title="850623.SI / 620101">房屋建设Ⅲ</span></div></div><div class="l2-section" data-name="装修装饰Ⅱ">
+      <div class="l2-title" style="color:#ffa198">装修装饰Ⅱ <span class="l3-count">801722.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="装修装饰Ⅲ" title="857221.SI / 620201">装修装饰Ⅲ</span></div></div><div class="l2-section" data-name="基础建设">
+      <div class="l2-title" style="color:#ffa198">基础建设 <span class="l3-count">801723.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="基建市政工程" title="857236.SI / 620306">基建市政工程</span><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="园林工程" title="857251.SI / 620307">园林工程</span></div></div><div class="l2-section" data-name="专业工程">
+      <div class="l2-title" style="color:#ffa198">专业工程 <span class="l3-count">801724.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="钢结构" title="857241.SI / 620401">钢结构</span><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="化学工程" title="857242.SI / 620402">化学工程</span><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="国际工程" title="857243.SI / 620403">国际工程</span><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="其他专业工程" title="857244.SI / 620404">其他专业工程</span></div></div><div class="l2-section" data-name="工程咨询服务Ⅱ">
+      <div class="l2-title" style="color:#ffa198">工程咨询服务Ⅱ <span class="l3-count">801726.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,161,152,.12);color:#ffa198" data-name="工程咨询服务Ⅲ" title="857261.SI / 620601">工程咨询服务Ⅲ</span></div></div></div></div><div class="l1-block" data-name="电力设备" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #56d4dd">
+    <span>电力设备 <span class="l3-count">801730.SI · 6个二级 · 21个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="电机Ⅱ">
+      <div class="l2-title" style="color:#56d4dd">电机Ⅱ <span class="l3-count">801731.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="电机Ⅲ" title="850741.SI / 630101">电机Ⅲ</span></div></div><div class="l2-section" data-name="其他电源设备Ⅱ">
+      <div class="l2-title" style="color:#56d4dd">其他电源设备Ⅱ <span class="l3-count">801733.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="综合电力设备商" title="857331.SI / 630301">综合电力设备商</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="火电设备" title="857334.SI / 630304">火电设备</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="其他电源设备Ⅲ" title="857336.SI / 630306">其他电源设备Ⅲ</span></div></div><div class="l2-section" data-name="光伏设备">
+      <div class="l2-title" style="color:#56d4dd">光伏设备 <span class="l3-count">801735.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="硅料硅片" title="857351.SI / 630501">硅料硅片</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="光伏电池组件" title="857352.SI / 630502">光伏电池组件</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="逆变器" title="857353.SI / 630503">逆变器</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="光伏辅材" title="857354.SI / 630504">光伏辅材</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="光伏加工设备" title="857355.SI / 630505">光伏加工设备</span></div></div><div class="l2-section" data-name="风电设备">
+      <div class="l2-title" style="color:#56d4dd">风电设备 <span class="l3-count">801736.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="风电整机" title="857361.SI / 630601">风电整机</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="风电零部件" title="857362.SI / 630602">风电零部件</span></div></div><div class="l2-section" data-name="电池">
+      <div class="l2-title" style="color:#56d4dd">电池 <span class="l3-count">801737.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="锂电池" title="857371.SI / 630701">锂电池</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="电池化学品" title="857372.SI / 630702">电池化学品</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="锂电专用设备" title="857373.SI / 630703">锂电专用设备</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="燃料电池" title="857374.SI / 630704">燃料电池</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="蓄电池及其他电池" title="857375.SI / 630705">蓄电池及其他电池</span></div></div><div class="l2-section" data-name="电网设备">
+      <div class="l2-title" style="color:#56d4dd">电网设备 <span class="l3-count">801738.SI · 5个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="输变电设备" title="857381.SI / 630801">输变电设备</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="配电设备" title="857382.SI / 630802">配电设备</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="电网自动化设备" title="857321.SI / 630803">电网自动化设备</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="电工仪器仪表" title="857323.SI / 630804">电工仪器仪表</span><span class="l3-tag" style="background:rgba(86,212,221,.12);color:#56d4dd" data-name="线缆部件及其他" title="857344.SI / 630805">线缆部件及其他</span></div></div></div></div><div class="l1-block" data-name="机械设备" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #e3b341">
+    <span>机械设备 <span class="l3-count">801890.SI · 5个二级 · 19个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="通用设备">
+      <div class="l2-title" style="color:#e3b341">通用设备 <span class="l3-count">801072.SI · 6个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="机床工具" title="850711.SI / 640101">机床工具</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="磨具磨料" title="850713.SI / 640103">磨具磨料</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="制冷空调设备" title="850715.SI / 640105">制冷空调设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="其他通用设备" title="850716.SI / 640106">其他通用设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="仪器仪表" title="850731.SI / 640107">仪器仪表</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="金属制品" title="850751.SI / 640108">金属制品</span></div></div><div class="l2-section" data-name="专用设备">
+      <div class="l2-title" style="color:#e3b341">专用设备 <span class="l3-count">801074.SI · 6个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="能源及重型设备" title="850725.SI / 640203">能源及重型设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="楼宇设备" title="850728.SI / 640204">楼宇设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="纺织服装设备" title="850721.SI / 640206">纺织服装设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="农用机械" title="850723.SI / 640207">农用机械</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="印刷包装机械" title="850726.SI / 640208">印刷包装机械</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="其他专用设备" title="850727.SI / 640209">其他专用设备</span></div></div><div class="l2-section" data-name="轨交设备Ⅱ">
+      <div class="l2-title" style="color:#e3b341">轨交设备Ⅱ <span class="l3-count">801076.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="轨交设备Ⅲ" title="850936.SI / 640501">轨交设备Ⅲ</span></div></div><div class="l2-section" data-name="工程机械">
+      <div class="l2-title" style="color:#e3b341">工程机械 <span class="l3-count">801077.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="工程机械整机" title="850771.SI / 640601">工程机械整机</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="工程机械器件" title="850772.SI / 640602">工程机械器件</span></div></div><div class="l2-section" data-name="自动化设备">
+      <div class="l2-title" style="color:#e3b341">自动化设备 <span class="l3-count">801078.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="机器人" title="850781.SI / 640701">机器人</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="工控设备" title="850782.SI / 640702">工控设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="激光设备" title="850783.SI / 640703">激光设备</span><span class="l3-tag" style="background:rgba(227,179,65,.12);color:#e3b341" data-name="其他自动化设备" title="850784.SI / 640704">其他自动化设备</span></div></div></div></div><div class="l1-block" data-name="国防军工" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #d2a8ff">
+    <span>国防军工 <span class="l3-count">801740.SI · 5个二级 · 5个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="航天装备Ⅱ">
+      <div class="l2-title" style="color:#d2a8ff">航天装备Ⅱ <span class="l3-count">801741.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="航天装备Ⅲ" title="857411.SI / 650101">航天装备Ⅲ</span></div></div><div class="l2-section" data-name="航空装备Ⅱ">
+      <div class="l2-title" style="color:#d2a8ff">航空装备Ⅱ <span class="l3-count">801742.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="航空装备Ⅲ" title="857421.SI / 650201">航空装备Ⅲ</span></div></div><div class="l2-section" data-name="地面兵装Ⅱ">
+      <div class="l2-title" style="color:#d2a8ff">地面兵装Ⅱ <span class="l3-count">801743.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="地面兵装Ⅲ" title="857431.SI / 650301">地面兵装Ⅲ</span></div></div><div class="l2-section" data-name="航海装备Ⅱ">
+      <div class="l2-title" style="color:#d2a8ff">航海装备Ⅱ <span class="l3-count">801744.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="航海装备Ⅲ" title="850935.SI / 650401">航海装备Ⅲ</span></div></div><div class="l2-section" data-name="军工电子Ⅱ">
+      <div class="l2-title" style="color:#d2a8ff">军工电子Ⅱ <span class="l3-count">801745.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(210,168,255,.12);color:#d2a8ff" data-name="军工电子Ⅲ" title="857451.SI / 650501">军工电子Ⅲ</span></div></div></div></div><div class="l1-block" data-name="计算机" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #a5d6ff">
+    <span>计算机 <span class="l3-count">801750.SI · 3个二级 · 5个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="计算机设备">
+      <div class="l2-title" style="color:#a5d6ff">计算机设备 <span class="l3-count">801101.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="安防设备" title="850702.SI / 710102">安防设备</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="其他计算机设备" title="850703.SI / 710103">其他计算机设备</span></div></div><div class="l2-section" data-name="IT服务Ⅱ">
+      <div class="l2-title" style="color:#a5d6ff">IT服务Ⅱ <span class="l3-count">801103.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="IT服务Ⅲ" title="852226.SI / 710301">IT服务Ⅲ</span></div></div><div class="l2-section" data-name="软件开发">
+      <div class="l2-title" style="color:#a5d6ff">软件开发 <span class="l3-count">801104.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="垂直应用软件" title="851041.SI / 710401">垂直应用软件</span><span class="l3-tag" style="background:rgba(165,214,255,.12);color:#a5d6ff" data-name="横向通用软件" title="851042.SI / 710402">横向通用软件</span></div></div></div></div><div class="l1-block" data-name="传媒" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ffd33d">
+    <span>传媒 <span class="l3-count">801760.SI · 7个二级 · 16个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="游戏Ⅱ">
+      <div class="l2-title" style="color:#ffd33d">游戏Ⅱ <span class="l3-count">801764.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="游戏Ⅲ" title="857641.SI / 720401">游戏Ⅲ</span></div></div><div class="l2-section" data-name="广告营销">
+      <div class="l2-title" style="color:#ffd33d">广告营销 <span class="l3-count">801765.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="营销代理" title="857651.SI / 720501">营销代理</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="广告媒体" title="857652.SI / 720502">广告媒体</span></div></div><div class="l2-section" data-name="影视院线">
+      <div class="l2-title" style="color:#ffd33d">影视院线 <span class="l3-count">801766.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="影视动漫制作" title="857661.SI / 720601">影视动漫制作</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="院线" title="857662.SI / 720602">院线</span></div></div><div class="l2-section" data-name="数字媒体">
+      <div class="l2-title" style="color:#ffd33d">数字媒体 <span class="l3-count">801767.SI · 6个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="视频媒体" title="857671.SI / 720701">视频媒体</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="音频媒体" title="857672.SI / 720702">音频媒体</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="图片媒体" title="857673.SI / 720703">图片媒体</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="门户网站" title="857674.SI / 720704">门户网站</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="文字媒体" title="857675.SI / 720705">文字媒体</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="其他数字媒体" title="857676.SI / 720706">其他数字媒体</span></div></div><div class="l2-section" data-name="社交Ⅱ">
+      <div class="l2-title" style="color:#ffd33d">社交Ⅱ <span class="l3-count">801768.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="社交Ⅲ" title="857681.SI / 720801">社交Ⅲ</span></div></div><div class="l2-section" data-name="出版">
+      <div class="l2-title" style="color:#ffd33d">出版 <span class="l3-count">801769.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="教育出版" title="857691.SI / 720901">教育出版</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="大众出版" title="857692.SI / 720902">大众出版</span><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="其他出版" title="857693.SI / 720903">其他出版</span></div></div><div class="l2-section" data-name="电视广播Ⅱ">
+      <div class="l2-title" style="color:#ffd33d">电视广播Ⅱ <span class="l3-count">801995.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,211,61,.12);color:#ffd33d" data-name="电视广播Ⅲ" title="859951.SI / 721001">电视广播Ⅲ</span></div></div></div></div><div class="l1-block" data-name="通信" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #ff7b72">
+    <span>通信 <span class="l3-count">801770.SI · 2个二级 · 7个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="通信服务">
+      <div class="l2-title" style="color:#ff7b72">通信服务 <span class="l3-count">801223.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="电信运营商" title="852212.SI / 730102">电信运营商</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="通信工程及服务" title="852213.SI / 730103">通信工程及服务</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="通信应用增值服务" title="852214.SI / 730104">通信应用增值服务</span></div></div><div class="l2-section" data-name="通信设备">
+      <div class="l2-title" style="color:#ff7b72">通信设备 <span class="l3-count">801102.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="通信网络设备及器件" title="851024.SI / 730204">通信网络设备及器件</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="通信线缆及配套" title="851025.SI / 730205">通信线缆及配套</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="通信终端及配件" title="851026.SI / 730206">通信终端及配件</span><span class="l3-tag" style="background:rgba(255,123,114,.12);color:#ff7b72" data-name="其他通信设备" title="851027.SI / 730207">其他通信设备</span></div></div></div></div><div class="l1-block" data-name="煤炭" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #3fb950">
+    <span>煤炭 <span class="l3-count">801950.SI · 2个二级 · 3个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="煤炭开采">
+      <div class="l2-title" style="color:#3fb950">煤炭开采 <span class="l3-count">801951.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="动力煤" title="859511.SI / 740101">动力煤</span><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="焦煤" title="859512.SI / 740102">焦煤</span></div></div><div class="l2-section" data-name="焦炭Ⅱ">
+      <div class="l2-title" style="color:#3fb950">焦炭Ⅱ <span class="l3-count">801952.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(63,185,80,.12);color:#3fb950" data-name="焦炭Ⅲ" title="859521.SI / 740201">焦炭Ⅲ</span></div></div></div></div><div class="l1-block" data-name="石油石化" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #f85149">
+    <span>石油石化 <span class="l3-count">801960.SI · 3个二级 · 6个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="油气开采Ⅱ">
+      <div class="l2-title" style="color:#f85149">油气开采Ⅱ <span class="l3-count">801961.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="油气开采Ⅲ" title="859611.SI / 750101">油气开采Ⅲ</span></div></div><div class="l2-section" data-name="油服工程">
+      <div class="l2-title" style="color:#f85149">油服工程 <span class="l3-count">801962.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="油田服务" title="859621.SI / 750201">油田服务</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="油气及炼化工程" title="859622.SI / 750202">油气及炼化工程</span></div></div><div class="l2-section" data-name="炼化及贸易">
+      <div class="l2-title" style="color:#f85149">炼化及贸易 <span class="l3-count">801963.SI · 3个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="炼油化工" title="859631.SI / 750301">炼油化工</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="油品石化贸易" title="859632.SI / 750302">油品石化贸易</span><span class="l3-tag" style="background:rgba(248,81,73,.12);color:#f85149" data-name="其他石化" title="859633.SI / 750303">其他石化</span></div></div></div></div><div class="l1-block" data-name="环保" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #58a6ff">
+    <span>环保 <span class="l3-count">801970.SI · 2个二级 · 5个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="环境治理">
+      <div class="l2-title" style="color:#58a6ff">环境治理 <span class="l3-count">801971.SI · 4个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="大气治理" title="859711.SI / 760101">大气治理</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="水务及水治理" title="859712.SI / 760102">水务及水治理</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="固废治理" title="859713.SI / 760103">固废治理</span><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="综合环境治理" title="859714.SI / 760104">综合环境治理</span></div></div><div class="l2-section" data-name="环保设备Ⅱ">
+      <div class="l2-title" style="color:#58a6ff">环保设备Ⅱ <span class="l3-count">801972.SI · 1个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(88,166,255,.12);color:#58a6ff" data-name="环保设备Ⅲ" title="859721.SI / 760201">环保设备Ⅲ</span></div></div></div></div><div class="l1-block" data-name="美容护理" onclick="if(event.target.closest('.l3-tag'))return;this.classList.toggle('open')">
+  <div class="l1-header" style="border-left:4px solid #bc8cff">
+    <span>美容护理 <span class="l3-count">801980.SI · 3个二级 · 6个三级</span></span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="l1-body"><div class="l2-section" data-name="个护用品">
+      <div class="l2-title" style="color:#bc8cff">个护用品 <span class="l3-count">801981.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="生活用纸" title="859811.SI / 770101">生活用纸</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="洗护用品" title="859812.SI / 770102">洗护用品</span></div></div><div class="l2-section" data-name="化妆品">
+      <div class="l2-title" style="color:#bc8cff">化妆品 <span class="l3-count">801982.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="化妆品制造及其他" title="859821.SI / 770201">化妆品制造及其他</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="品牌化妆品" title="859822.SI / 770202">品牌化妆品</span></div></div><div class="l2-section" data-name="医疗美容">
+      <div class="l2-title" style="color:#bc8cff">医疗美容 <span class="l3-count">801983.SI · 2个三级</span></div>
+      <div class="l3-tags"><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="医美耗材" title="859831.SI / 770301">医美耗材</span><span class="l3-tag" style="background:rgba(188,140,255,.12);color:#bc8cff" data-name="医美服务" title="859832.SI / 770302">医美服务</span></div></div></div></div>
+<div class="footer">🦐 小虾米 · 申万2021版行业分类 · 2026-03-15</div>
+<script>
+function filterIndustries(q) {
+  q = q.toLowerCase();
+  document.querySelectorAll('.l1-block').forEach(b => {
+    const names = b.querySelectorAll('[data-name]');
+    let match = false;
+    names.forEach(n => { if (n.dataset.name.toLowerCase().includes(q)) match = true; });
+    b.style.display = match || !q ? '' : 'none';
+    if (match && q) b.classList.add('open');
+  });
+}
+</script>
+</body></html>
